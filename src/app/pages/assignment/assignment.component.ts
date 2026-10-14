@@ -56,10 +56,6 @@ export class AssignmentComponent {
     );
   }
 
-  isStudent() {
-    return this.authSrv.currentUser()?.role === 'student';
-  }
-
   isteacher() {
     return this.authSrv.currentUser()?.role === 'teacher';
   }
