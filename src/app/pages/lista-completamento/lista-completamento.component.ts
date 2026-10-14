@@ -31,8 +31,8 @@ export class ListaCompletamentoComponent {
       this.classroomId.set(classroomId);
       this.assignmentSrv.list(classroomId).subscribe({
         next: (assignments) => {
-          const assignment = assignments.find(a => a.id === assignmentId);
-          this.students.set(assignment?.students ?? []);
+          const findAssignment = assignments.find(assigment => assigment.id === assignmentId);
+          this.students.set(findAssignment?.students ?? []);
         },
         error: (response) => this.errorMessage.set(response.error?.message ?? 'Si è verificato un errore')
       });

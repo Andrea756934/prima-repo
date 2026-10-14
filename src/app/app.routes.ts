@@ -32,7 +32,7 @@ export const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: '/classroom',
+        redirectTo: '/login',
         pathMatch: 'full'
     }
 ];

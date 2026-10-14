@@ -52,7 +52,7 @@ export class AssignmentComponent {
 
   assignmentUpdated(updated: Assignment) {
     this.assignments.update(list =>
-      list.map(a => a.id === updated.id ? updated : a)
+      list.map(assignment => assignment.id === updated.id ? updated : assignment)
     );
   }
 
