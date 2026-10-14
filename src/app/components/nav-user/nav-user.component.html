@@ -1,0 +1,9 @@
+<li class="nav-item" ngbDropdown display="dynamic" palcement="bottom-end">
+    <a class="nav-link p-0" tabindex="0" ngbDropdownToggle role="button">
+        <img [src]="user().picture" class="profile-picture">
+        {{ user().firstName }} {{ user().lastName }}
+    </a>
+    <div ngbDropdownMenu class="dropdown-menu">
+        <a ngbDropdownItem (click)="logout()">Logout</a>
+    </div>
+</li>

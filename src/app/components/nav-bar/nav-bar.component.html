@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand bg-success-subtle">
+
+    <div class="container-fluid">
+        <a class="navbar-brand" routerLink="/classroom">
+            Classroom
+        </a>
+        <div class="navbar-collapse justify-content-between">
+            <ul class="navbar-nav">
+            </ul>
+            <div class="d-flex">
+                <ul class="navbar-nav">
+
+                    <app-nav-user *ifAuthenticated="true; else loginBtn" [user]="currentUser()!"
+                        (logout)="logout()"></app-nav-user>
+
+                    <ng-template #loginBtn>
+                        <li class="nav-item">
+                            <button class="nav-link" routerLinkActive="active" routerLink="/login">Login</button>
+                        </li>
+                    </ng-template>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

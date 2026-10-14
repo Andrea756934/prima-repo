@@ -1,0 +1,33 @@
+<app-nav-bar />
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Stato di completamento</h2>
+        <a class="btn btn-outline-secondary" [routerLink]="['/classroom', classroomId(), 'assignment']">
+            Torna alle attività
+        </a>
+    </div>
+
+    <div class="text-danger mb-3">
+        {{ errorMessage() }}
+    </div>
+
+    <ul class="list-group">
+        @if (students().length > 0) {
+        @for (student of students(); track student.user.id) { <li
+            class="list-group-item d-flex justify-content-between align-items-center">
+            <span>{{ student.user.firstName }} {{ student.user.lastName }}</span>
+            @if (student.completed) {
+            <span class="badge bg-success">
+                Completato il {{ student.completedAt | date:'dd/MM/yyyy HH:mm' }}
+            </span>
+            } @else {
+            <span class="badge bg-secondary">Non completato</span>
+            }
+        </li>
+        }
+        } @else {
+        <li class="list-group-item">Nessuno studente in questa classe</li>
+        }
+    </ul>
+</div>

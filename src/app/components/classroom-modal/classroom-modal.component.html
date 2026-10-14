@@ -1,0 +1,38 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Nuova classe</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="mb-3">
+                <label for="name">Nome classe</label>
+                <input id="name" class="form-control" placeholder="inserisci nome classe" name="name"
+                    [(ngModel)]="name" />
+            </div>
+
+            <div class="mb-3">
+                <label>Studenti</label>
+                @for (student of students(); track student.id) {
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" [id]="'student-' + student.id"
+                        (change)="toggleStudent(student.id, $any($event.target).checked)">
+
+                    <label class="form-check-label" [for]="'student-' + student.id">
+                        {{ student.firstName }} {{ student.lastName }}
+                    </label>
+                </div>
+                }
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Salva</button>
+    </div>
+</ng-template>
+
+<button class="btn btn-primary" (click)="open(content)">Nuova classe</button>
+
+<hr />
+
+<pre>{{ closeResult() }}</pre>

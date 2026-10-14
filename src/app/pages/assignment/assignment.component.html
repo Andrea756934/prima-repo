@@ -1,0 +1,31 @@
+<app-nav-bar />
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">Attività</h2>
+
+        <div class="d-flex align-items-center gap-2">
+            <a class="btn btn-outline-secondary" [routerLink]="['/classroom']">
+                Torna alle classi
+            </a>
+
+            @if (isteacher()) {
+            <app-assignment-modal [classroomId]="classroomId()" (created)="fetch()" />
+            }
+        </div>
+    </div>
+
+    <div class="list-group">
+        @if (assignments().length > 0) {
+        @for (assignment of assignments(); track assignment.id) {
+        <app-assignment-card 
+        [assignment]="assignment" 
+        [classroomId]="classroomId()"
+        (assignmentUpdated)="assignmentUpdated($event)" />
+        }
+
+        } @else {
+        <h4>Nessun attività per questa classe</h4>
+        }
+    </div>
+</div>
