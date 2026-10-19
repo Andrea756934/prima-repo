@@ -1,21 +1,19 @@
 <nav class="navbar navbar-expand bg-success-subtle">
-
-    <div class="container-fluid">
+    <div class="container">
         <a class="navbar-brand" routerLink="/classroom">
             Classroom
         </a>
         <div class="navbar-collapse justify-content-between">
-            <ul class="navbar-nav">
-            </ul>
+            <ul class="navbar-nav"></ul>
             <div class="d-flex">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav align-items-center">
 
                     <app-nav-user *ifAuthenticated="true; else loginBtn" [user]="currentUser()!"
                         (logout)="logout()"></app-nav-user>
 
                     <ng-template #loginBtn>
                         <li class="nav-item">
-                            <button class="nav-link" routerLinkActive="active" routerLink="/login">Login</button>
+                            <button class="btn btn-success btn-sm" routerLink="/login">Accedi</button>
                         </li>
                     </ng-template>
                 </ul>

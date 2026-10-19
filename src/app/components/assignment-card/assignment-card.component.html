@@ -1,25 +1,33 @@
-<div class="list-group-item d-flex justify-content-between align-items-center">
-    <div>
-        <h5 class="mb-1">{{ assignment().title }}</h5>
-        <p class="mb-1 text-muted">
+<div class="item-card d-flex justify-content-between align-items-center gap-3 flex-wrap">
+    <div class="flex-grow-1">
+        <h5 class="fw-semibold mb-1">{{ assignment().title }}</h5>
+        <p class="small text-muted mb-2">
             Creata il {{ assignment().createdAt | date:'dd/MM/yyyy' }}
         </p>
-        <p class="mb-0 text-muted">
-            {{ assignment().completedCount }} / {{ assignment().studentsCount }} studenti hanno completato
-        </p>
+
+        <div class="d-flex align-items-center gap-2">
+            <div class="progress flex-grow-1" style="height: 8px; max-width: 260px;" role="progressbar">
+                <div class="progress-bar bg-success"
+                    [style.width.%]="assignment().studentsCount ? (assignment().completedCount / assignment().studentsCount) * 100 : 0">
+                </div>
+            </div>
+            <span class="small text-muted">
+                {{ assignment().completedCount }} / {{ assignment().studentsCount }} studenti
+            </span>
+        </div>
     </div>
 
     @if (isStudent()) {
     @if (assignment().completed) {
-    <h5 class="mb-1">completato</h5>
+    <span class="badge rounded-pill text-bg-success px-3 py-2">Completato</span>
     } @else {
-    <button class="btn btn-primary" [disabled]="completing()" (click)="complete()">
+    <button class="btn btn-success" [disabled]="completing()" (click)="complete()">
         Segna come completata
     </button>
     }
     }
     @else {
-    <button class="btn btn-primary" (click)="open()">
+    <button class="btn btn-outline-success" (click)="open()">
         Vedi chi ha completato
     </button>
     }

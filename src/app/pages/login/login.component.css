@@ -1,0 +1,44 @@
+:host {
+    --brand: #198754;
+    --brand-soft: #d1e7dd;
+    --page-bg: #f4f7f5;
+    --radius: 14px;
+    display: block;
+}
+
+.auth-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(135deg, var(--brand-soft) 0%, var(--page-bg) 60%);
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 440px;
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: 0 10px 28px rgba(16, 40, 28, 0.14);
+    padding: 2.25rem;
+}
+
+.auth-logo {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 1rem;
+    border-radius: 16px;
+    background: var(--brand);
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-control:focus {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.18);
+}

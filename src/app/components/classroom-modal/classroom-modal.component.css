@@ -1,0 +1,20 @@
+.student-list {
+    max-height: 240px;
+    overflow-y: auto;
+    border: 1px solid #e3e9e6;
+    border-radius: 10px;
+    padding: 0.5rem 0.75rem;
+}
+
+.form-control:focus {
+    border-color: #198754;
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.18);
+}
+
+/* Il contenitore del modal viene creato da ng-bootstrap fuori dal componente,
+   quindi per raggiungerlo serve ::ng-deep */
+::ng-deep .modal-content {
+    border: 0;
+    border-radius: 14px;
+    box-shadow: 0 10px 28px rgba(16, 40, 28, 0.14);
+}

@@ -1,10 +1,13 @@
 <app-nav-bar />
 
-<div class="container mt-5">
-    <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">Attività</h2>
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-start mb-4">
+        <div>
+            <h2 class="fw-bold mb-0">Attività</h2>
+            <p class="text-muted mb-0">Gli esercizi assegnati a questa classe</p>
+        </div>
 
-        <div class="d-flex align-items-center gap-2">
+        <div class="d-flex align-items-start gap-2">
             <a class="btn btn-outline-secondary" [routerLink]="['/classroom']">
                 Torna alle classi
             </a>
@@ -15,17 +18,15 @@
         </div>
     </div>
 
-    <div class="list-group">
-        @if (assignments().length > 0) {
+    <div class="d-flex flex-column gap-3">
         @for (assignment of assignments(); track assignment.id) {
-        <app-assignment-card 
-        [assignment]="assignment" 
-        [classroomId]="classroomId()"
-        (assignmentUpdated)="assignmentUpdated($event)" />
-        }
-
-        } @else {
-        <h4>Nessun attività per questa classe</h4>
+        <app-assignment-card [assignment]="assignment" [classroomId]="classroomId()"
+            (assignmentUpdated)="assignmentUpdated($event)" />
+        } @empty {
+        <div class="empty-state">
+            <h5 class="mb-1">Nessuna attività</h5>
+            <p class="mb-0">Non ci sono ancora attività per questa classe.</p>
+        </div>
         }
     </div>
 </div>

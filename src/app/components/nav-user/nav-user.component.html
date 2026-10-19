@@ -1,9 +1,9 @@
-<li class="nav-item" ngbDropdown display="dynamic" palcement="bottom-end">
-    <a class="nav-link p-0" tabindex="0" ngbDropdownToggle role="button">
-        <img [src]="user().picture" class="profile-picture">
+<li class="nav-item" ngbDropdown display="dynamic" placement="bottom-end">
+    <a class="nav-link p-0 d-flex align-items-center fw-semibold" tabindex="0" ngbDropdownToggle role="button">
+        <img [src]="user().picture" class="profile-picture" alt="profilo">
         {{ user().firstName }} {{ user().lastName }}
     </a>
-    <div ngbDropdownMenu class="dropdown-menu">
-        <a ngbDropdownItem (click)="logout()">Logout</a>
+    <div ngbDropdownMenu class="dropdown-menu shadow border-0 p-0 overflow-hidden">
+        <a ngbDropdownItem class="bg-danger text-white px-3 py-2" role="button" (click)="logout()">Logout</a>
     </div>
 </li>

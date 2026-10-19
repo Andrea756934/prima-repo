@@ -1,26 +1,33 @@
 <app-nav-bar />
 
-<div class="container mt-5">
+<div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">Le tue classi</h2>
+        <div>
+            <h2 class="fw-bold mb-0">Le tue classi</h2>
+            <p class="text-muted mb-0">Seleziona una classe per vedere le attività</p>
+        </div>
 
         @if (isteacher()) {
         <app-classroom-modal (created)="fetch()" />
         }
     </div>
 
-    <div class="row row-cols-1 row-cols-md-4 g-6 mt-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-4">
         @for (classroom of classrooms(); track classroom.id) {
         <div class="col">
             <app-classroom-card [classroom]="classroom" />
         </div>
         } @empty {
         <div class="col-12">
-            @if (isteacher()) {
-            <h6 class="text-muted">Non hai ancora creato nessuna classe.</h6>
-            } @else {
-            <h6 class="text-muted">Non sei iscritto a nessuna classe.</h6>
-            }
+            <div class="empty-state">
+                @if (isteacher()) {
+                <h5 class="mb-1">Nessuna classe</h5>
+                <p class="mb-0">Non hai ancora creato nessuna classe.</p>
+                } @else {
+                <h5 class="mb-1">Nessuna classe</h5>
+                <p class="mb-0">Non sei iscritto a nessuna classe.</p>
+                }
+            </div>
         </div>
         }
     </div>

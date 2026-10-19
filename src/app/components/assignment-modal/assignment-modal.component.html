@@ -1,24 +1,25 @@
 <ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Nuova attività</h4>
+    <div class="modal-header border-0 pb-0">
+        <h4 class="modal-title fw-bold" id="modal-basic-title">Nuova attività</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <form>
-            <div class="mb-3">
-                <label for="title">Titolo</label>
-                <input id="title" class="form-control" placeholder="inserisci titolo attività" name="title"
+            <div class="mb-1">
+                <label for="title" class="form-label fw-semibold small">Titolo</label>
+                <input id="title" class="form-control" placeholder="Es. Completare l'esercizio 3" name="title"
                     [(ngModel)]="title" />
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Salva</button>
+    <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-light" (click)="modal.dismiss('Cancel')">Annulla</button>
+        <button type="button" class="btn btn-success" (click)="modal.close('Save click')">Salva</button>
     </div>
 </ng-template>
 
 <div class="text-end">
-    <button class="btn btn-primary" (click)="open(content)">Nuova attività</button>
+    <button class="btn btn-success" (click)="open(content)">+ Nuova attività</button>
     @if (closeResult()) {
     <div class="small text-muted mt-1">{{ closeResult() }}</div>
     }

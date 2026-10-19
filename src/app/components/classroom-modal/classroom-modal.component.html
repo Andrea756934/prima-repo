@@ -1,38 +1,40 @@
 <ng-template #content let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Nuova classe</h4>
+    <div class="modal-header border-0 pb-0">
+        <h4 class="modal-title fw-bold" id="modal-basic-title">Nuova classe</h4>
         <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
         <form>
             <div class="mb-3">
-                <label for="name">Nome classe</label>
-                <input id="name" class="form-control" placeholder="inserisci nome classe" name="name"
-                    [(ngModel)]="name" />
+                <label for="name" class="form-label fw-semibold small">Nome classe</label>
+                <input id="name" class="form-control" placeholder="Es. Frontend 2026" name="name" [(ngModel)]="name" />
             </div>
 
-            <div class="mb-3">
-                <label>Studenti</label>
-                @for (student of students(); track student.id) {
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" [id]="'student-' + student.id"
-                        (change)="toggleStudent(student.id, $any($event.target).checked)">
-
-                    <label class="form-check-label" [for]="'student-' + student.id">
-                        {{ student.firstName }} {{ student.lastName }}
-                    </label>
+            <div class="mb-1">
+                <label class="form-label fw-semibold small">Studenti</label>
+                <div class="student-list">
+                    @for (student of students(); track student.id) {
+                    <div class="form-check py-1">
+                        <input class="form-check-input" type="checkbox" [id]="'student-' + student.id"
+                            (change)="toggleStudent(student.id, $any($event.target).checked)">
+                        <label class="form-check-label" [for]="'student-' + student.id">
+                            {{ student.firstName }} {{ student.lastName }}
+                        </label>
+                    </div>
+                    }
                 </div>
-                }
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" (click)="modal.close('Save click')">Salva</button>
+    <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-light" (click)="modal.dismiss('Cancel')">Annulla</button>
+        <button type="button" class="btn btn-success" (click)="modal.close('Save click')">Salva</button>
     </div>
 </ng-template>
 
-<button class="btn btn-primary" (click)="open(content)">Nuova classe</button>
-
-<hr />
-
-<pre>{{ closeResult() }}</pre>
+<div class="text-end">
+    <button class="btn btn-success" (click)="open(content)">+ Nuova classe</button>
+    @if (closeResult()) {
+    <div class="small text-muted mt-1">{{ closeResult() }}</div>
+    }
+</div>

@@ -1,33 +1,38 @@
 <app-nav-bar />
 
-<div class="container mt-5">
+<div class="container py-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2 class="mb-0">Stato di completamento</h2>
+        <div>
+            <h2 class="fw-bold mb-0">Stato di completamento</h2>
+            <p class="text-muted mb-0">Chi ha completato l'attività e quando</p>
+        </div>
         <a class="btn btn-outline-secondary" [routerLink]="['/classroom', classroomId(), 'assignment']">
             Torna alle attività
         </a>
     </div>
 
-    <div class="text-danger mb-3">
-        {{ errorMessage() }}
-    </div>
+    @if (errorMessage()) {
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+    }
 
-    <ul class="list-group">
-        @if (students().length > 0) {
-        @for (student of students(); track student.user.id) { <li
-            class="list-group-item d-flex justify-content-between align-items-center">
-            <span>{{ student.user.firstName }} {{ student.user.lastName }}</span>
+    <div class="d-flex flex-column gap-2">
+        @for (student of students(); track student.user.id) {
+        <div class="item-card d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center">
+                <img [src]="student.user.picture" class="avatar me-3" alt="studente">
+                <span class="fw-semibold">{{ student.user.firstName }} {{ student.user.lastName }}</span>
+            </div>
+
             @if (student.completed) {
-            <span class="badge bg-success">
+            <span class="badge rounded-pill text-bg-success px-3 py-2">
                 Completato il {{ student.completedAt | date:'dd/MM/yyyy HH:mm' }}
             </span>
             } @else {
-            <span class="badge bg-secondary">Non completato</span>
+            <span class="badge rounded-pill text-bg-secondary px-3 py-2">Non completato</span>
             }
-        </li>
+        </div>
+        } @empty {
+        <div class="empty-state">Nessuno studente in questa classe</div>
         }
-        } @else {
-        <li class="list-group-item">Nessuno studente in questa classe</li>
-        }
-    </ul>
+    </div>
 </div>

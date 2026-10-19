@@ -1,0 +1,36 @@
+:host {
+    --brand: #198754;
+    --radius: 14px;
+    display: block;
+    min-height: 100vh;
+    background: #f4f7f5;
+}
+
+h2 {
+    color: #1f2d27;
+}
+
+.item-card {
+    background: #fff;
+    border: 1px solid #e3e9e6;
+    border-left: 5px solid var(--brand);
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgba(16, 40, 28, 0.08);
+    padding: 1rem 1.25rem;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #6c7a73;
+    background: #fff;
+    border: 2px dashed #e3e9e6;
+    border-radius: var(--radius);
+}
