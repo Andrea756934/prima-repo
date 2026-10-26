@@ -8,7 +8,6 @@ import { IfAuthenticatedDirective } from "../../utils/if-authenticated.directive
   selector: 'app-nav-bar',
   imports: [
     RouterLink,
-    RouterLinkActive,
     NavUserComponent,
     RouterModule,
     IfAuthenticatedDirective
