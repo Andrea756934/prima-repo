@@ -1,24 +1,88 @@
 :host {
-    --brand: #198754;
-    --radius: 14px;
     display: block;
 }
 
 .item-card {
-    background: #fff;
-    border: 1px solid #e3e9e6;
-    border-left: 5px solid var(--brand);
-    border-radius: var(--radius);
-    box-shadow: 0 1px 3px rgba(16, 40, 28, 0.08);
-    padding: 1.1rem 1.25rem;
-    transition: box-shadow 0.15s ease;
+    position: relative;
+    padding: 1.35rem 1.5rem 1.35rem 1.75rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(6, 78, 59, 0.09);
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.32s var(--ease), box-shadow 0.32s var(--ease),
+        border-color 0.32s var(--ease);
+}
+
+.item-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 5px;
+    background: linear-gradient(180deg, #34d399, #059669 65%, #047857);
+}
+
+.item-card::after {
+    content: '';
+    position: absolute;
+    top: -70px;
+    right: -70px;
+    width: 180px;
+    height: 180px;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.16), transparent 68%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .item-card:hover {
-    box-shadow: 0 10px 28px rgba(16, 40, 28, 0.14);
+    transform: translateY(-3px);
+    border-color: rgba(16, 185, 129, 0.28);
+    box-shadow: var(--shadow-md);
 }
 
-.progress {
-    background-color: #e9efec;
-    border-radius: 99px;
+.item-card:hover::after {
+    opacity: 1;
+}
+
+.item-card:has(.text-bg-success) {
+    background: linear-gradient(180deg, #ffffff, #f4fdf8);
+    border-color: rgba(16, 185, 129, 0.28);
+}
+
+.item-card h5 {
+    position: relative;
+    z-index: 1;
+    color: var(--ink-900);
+    font-size: 1.04rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+}
+
+.item-card p.small {
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.01em;
+}
+
+.item-card .progress {
+    max-width: 280px;
+}
+
+.item-card .btn {
+    position: relative;
+    z-index: 1;
+    white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+    .item-card {
+        padding: 1.15rem 1.15rem 1.15rem 1.4rem;
+    }
+
+    .item-card .progress {
+        max-width: none;
+    }
 }

@@ -1,36 +1,126 @@
 :host {
-    --brand: #198754;
-    --radius: 14px;
     display: block;
     min-height: 100vh;
-    background: #f4f7f5;
+    padding-bottom: 2.5rem;
 }
 
 h2 {
-    color: #1f2d27;
+    color: var(--ink-900);
+}
+
+.d-flex.flex-column.gap-2 {
+    gap: 0.8rem !important;
 }
 
 .item-card {
-    background: #fff;
-    border: 1px solid #e3e9e6;
-    border-left: 5px solid var(--brand);
-    border-radius: var(--radius);
-    box-shadow: 0 1px 3px rgba(16, 40, 28, 0.08);
-    padding: 1rem 1.25rem;
+    position: relative;
+    padding: 1rem 1.25rem 1rem 1.5rem;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(6, 78, 59, 0.09);
+    border-radius: 18px;
+    box-shadow: var(--shadow-xs);
+    transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease),
+        border-color 0.3s var(--ease);
+    animation: rise 0.5s var(--ease) both;
+}
+
+.item-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background: linear-gradient(180deg, #34d399, #059669);
+}
+
+.item-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(16, 185, 129, 0.28);
+    box-shadow: var(--shadow-sm);
+}
+
+.item-card:nth-child(2) {
+    animation-delay: 0.04s;
+}
+
+.item-card:nth-child(3) {
+    animation-delay: 0.08s;
+}
+
+.item-card:nth-child(4) {
+    animation-delay: 0.12s;
+}
+
+.item-card:nth-child(5) {
+    animation-delay: 0.16s;
+}
+
+.item-card:nth-child(6) {
+    animation-delay: 0.2s;
 }
 
 .avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
+    width: 44px;
+    height: 44px;
     object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px rgba(16, 185, 129, 0.22),
+        0 8px 16px -10px rgba(4, 60, 40, 0.5);
+}
+
+.item-card .fw-semibold {
+    color: var(--ink-800);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+}
+
+.item-card .badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    margin-right: 0.45rem;
+    vertical-align: middle;
+    background: currentColor;
+    border-radius: 50%;
+    opacity: 0.85;
 }
 
 .empty-state {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: #6c7a73;
-    background: #fff;
-    border: 2px dashed #e3e9e6;
-    border-radius: var(--radius);
+    padding: 4rem 1.5rem;
+}
+
+.empty-state::before {
+    content: '';
+    display: block;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 1.1rem;
+    background:
+        radial-gradient(circle at 50% 38%, #ffffff 0 7px, transparent 7px),
+        radial-gradient(circle at 50% 82%, #ffffff 0 13px, transparent 13px),
+        linear-gradient(135deg, var(--brand-200), var(--brand-400));
+    border-radius: 18px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.75), var(--shadow-sm);
+}
+
+@media (max-width: 575.98px) {
+    :host {
+        padding-bottom: 1.5rem;
+    }
+
+    .item-card {
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .item-card .badge {
+        margin-left: 3.4rem;
+    }
+
+    .empty-state {
+        padding: 3rem 1.25rem;
+    }
 }

@@ -1,14 +1,32 @@
-<div class="classroom-card">
-    <h5 class="fw-bold mb-1">{{ classroom().name }}</h5>
-    <p class="text-muted mb-3">
-        {{ classroom().createdBy.firstName }} {{ classroom().createdBy.lastName }}
-    </p>
+<article class="classroom-card">
+    <div class="card-cover">
+        <span class="cover-orb cover-orb--one" aria-hidden="true"></span>
+        <span class="cover-orb cover-orb--two" aria-hidden="true"></span>
+        <span class="students-chip">
+            <span class="students-dot" aria-hidden="true"></span>
+            {{ classroom().studentsCount }}
+            {{ classroom().studentsCount === 1 ? 'studente' : 'studenti' }}
+        </span>
+    </div>
 
-    <span class="badge rounded-pill text-bg-light border align-self-start mb-4">
-        {{ classroom().studentsCount }} studenti
-    </span>
+    <div class="card-content">
+        <span class="card-initial" aria-hidden="true">{{ classroom().name.charAt(0) }}</span>
+        <h5 class="card-name">{{ classroom().name }}</h5>
 
-    <button [routerLink]="['/classroom', classroom().id, 'assignment']" class="btn btn-success mt-auto align-self-end">
-        Compiti
-    </button>
-</div>
+        <div class="teacher">
+            <img class="teacher-avatar" [src]="classroom().createdBy.picture"
+                [alt]="classroom().createdBy.firstName + ' ' + classroom().createdBy.lastName">
+            <span class="teacher-name">
+                {{ classroom().createdBy.firstName }} {{ classroom().createdBy.lastName }}
+            </span>
+        </div>
+    </div>
+
+    <div class="card-bottom">
+        <span class="card-meta">Attività</span>
+        <a [routerLink]="['/classroom', classroom().id, 'assignment']" class="btn btn-success btn-sm card-cta">
+            Compiti
+            <span class="cta-arrow" aria-hidden="true">→</span>
+        </a>
+    </div>
+</article>

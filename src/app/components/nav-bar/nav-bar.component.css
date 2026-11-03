@@ -1,16 +1,86 @@
 :host {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
     display: block;
 }
 
 .navbar {
-    box-shadow: 0 1px 3px rgba(16, 40, 28, 0.08);
-    border-bottom: 1px solid #e3e9e6;
-    padding-top: 0.6rem;
-    padding-bottom: 0.6rem;
+    position: relative;
+    padding: 0.7rem 0;
+    background: rgba(255, 255, 255, 0.72) !important;
+    border-bottom: 1px solid rgba(6, 78, 59, 0.08);
+    box-shadow: 0 14px 36px -30px rgba(4, 60, 40, 0.65);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -1px;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(16, 185, 129, 0.55),
+        rgba(56, 189, 248, 0.4),
+        transparent
+    );
 }
 
 .navbar-brand {
-    font-weight: 700;
-    letter-spacing: 0.3px;
-    color: #146c43 !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-right: 1.5rem;
+    color: var(--ink-900) !important;
+    font-size: 1.12rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+}
+
+.navbar-brand::before {
+    content: 'C';
+    display: grid;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(145deg, #34d399 0%, #059669 55%, #065f46 100%);
+    border-radius: 12px;
+    box-shadow: 0 12px 22px -12px rgba(5, 150, 105, 0.95),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    transition: transform 0.35s var(--ease);
+}
+
+.navbar-brand:hover::before {
+    transform: rotate(-7deg) scale(1.06);
+}
+
+.navbar-nav {
+    padding: 0;
+    list-style: none;
+}
+
+@media (max-width: 575.98px) {
+    .navbar {
+        padding: 0.55rem 0;
+    }
+
+    .navbar-brand {
+        gap: 0.55rem;
+        font-size: 1rem;
+    }
+
+    .navbar-brand::before {
+        width: 32px;
+        height: 32px;
+        border-radius: 11px;
+    }
 }
